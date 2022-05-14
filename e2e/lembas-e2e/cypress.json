@@ -1,0 +1,12 @@
+{
+  "fileServerFolder": ".",
+  "fixturesFolder": "./src/fixtures",
+  "integrationFolder": "./src/smoke",
+  "modifyObstructiveCode": false,
+  "supportFile": "./src/support/index.ts",
+  "pluginsFile": false,
+  "video": true,
+  "videosFolder": "../../dist/cypress/e2e/lembas-e2e/videos",
+  "screenshotsFolder": "../../dist/cypress/e2e/lembas-e2e/screenshots",
+  "chromeWebSecurity": false
+}

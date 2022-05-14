@@ -1,0 +1,34 @@
+{
+  "name": "@hirez_io/lembas",
+  "description": "DB Seeding Util for more efficient Smoke Testing",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "main": "src/index.js",
+  "scripts": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hirezio/lembas"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "author": {
+    "name": "Shai Reznik",
+    "company": "HiRez.io"
+  },
+  "keywords": [
+    "db seeding",
+    "smoke testing",
+    "smoke tests",
+    "e2e tests",
+    "database seeding",
+    "data seeding"
+  ],
+  "license": "MIT"
+}
