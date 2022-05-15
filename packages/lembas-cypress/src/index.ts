@@ -1,1 +1,1 @@
-export * from './lib/lembas-cypress';
+export * from './lib/setup-data-task';
