@@ -1,0 +1,5 @@
+{
+  "snapshotHook": "./lembas/snapshot.ts",
+  "restoreHook": "./lembas/restore.ts",
+  "emptyHook": "./lembas/empty.ts"
+}

@@ -30,5 +30,8 @@
     "database seeding",
     "data seeding"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
 }

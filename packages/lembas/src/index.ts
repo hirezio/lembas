@@ -1,5 +1,47 @@
 import { writeFile, readFile } from 'fs/promises';
 import * as fs from 'fs';
+import * as path from 'path';
+
+interface LembasConfig {
+  emptyHook?: string;
+  restoreHook?: string;
+  snapshotHook?: string;
+}
+
+let config: LembasConfig;
+let emptyDataFn: () => Promise<void> = async function noop() {};
+let restoreDataFn: () => Promise<void> = async function noop() {};
+let snapshotDataFn: () => Promise<void> = async function noop() {};
+
+async function getEmptyDataFn() {
+  const config = await getLembasConfig();
+  if (config.emptyHook) {
+    const emptyFn = await import(config.emptyHook);
+    return emptyFn.default;
+  }
+  return function noop() {};
+}
+
+export async function emptyData() {
+  if (!emptyDataFn) {
+    emptyDataFn = await getEmptyDataFn();
+  }
+  await emptyDataFn();
+}
+
+async function getLembasConfig(): Promise<LembasConfig> {
+  if (config) {
+    return config;
+  }
+
+  const LEMBAS_CONFIG_PATH = path.resolve(process.cwd(), `lembas.json`);
+  if (!fs.existsSync(LEMBAS_CONFIG_PATH)) {
+    return {};
+  }
+  const rawConfig = await readFile(LEMBAS_CONFIG_PATH, { encoding: 'utf8' });
+  config = JSON.parse(rawConfig);
+  return config;
+}
 
 export async function loadOrGenerate<T = any>(
   fileName: string,

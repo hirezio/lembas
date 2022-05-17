@@ -1,5 +1,10 @@
+import { SETUP_DATA } from '@hirez_io/lembas-cypress';
+
 describe('main', () => {
   it('should do something', () => {
-    expect(true).equal(true);
+    cy.task(SETUP_DATA, 'src/smoke/main.smoke.setup').then((data) => {
+      console.log('data', data);
+      expect(true).equal(true);
+    });
   });
 });

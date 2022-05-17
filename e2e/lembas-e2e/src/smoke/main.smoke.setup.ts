@@ -15,45 +15,44 @@
 //   users: User[];
 // }
 
-// export default setupMinimum;
+export default async function setup() {
+  return {
+    folder: process.cwd(),
+  };
+  //   return loadOrGenerate(__filename, async () => {
+  //     await emptyDb();
 
-// export async function setupMinimum() {
+  //     // SETUP GLOBAL CONFIG
+  //     const globalConfig: GlobalConfig = {
+  //       numOfFeatured: 10
+  //     }
+  //     await axios.post(`${SERVER_BASE_URL}/config`, globalConfig);
 
-//   return loadOrGenerate(__filename, async () => {
-//     await emptyDb();
+  //     // CREATE USER
+  //     const userCredentials = generateFakeUserCredentials();
 
-//     // SETUP GLOBAL CONFIG
-//     const globalConfig: GlobalConfig = {
-//       numOfFeatured: 10
-//     }
-//     await axios.post(`${SERVER_BASE_URL}/config`, globalConfig);
+  //     const response = await axios.post(`${SERVER_BASE_URL}/users`, userCredentials);
+  //     const user = response.data.user;
 
-//     // CREATE USER
-//     const userCredentials = generateFakeUserCredentials();
+  //     // CREATE A LLAMA FOR THAT USER
+  //     const llama = generateFakeLlama({
+  //       userId: user.id,
+  //       imageFileName: '1.jpg',
+  //       featured: true
+  //     });
 
-//     const response = await axios.post(`${SERVER_BASE_URL}/users`, userCredentials);
-//     const user = response.data.user;
+  //     await axios.post(`${SERVER_BASE_URL}/llamas`, llama);
 
-//     // CREATE A LLAMA FOR THAT USER
-//     const llama = generateFakeLlama({
-//       userId: user.id,
-//       imageFileName: '1.jpg',
-//       featured: true
-//     });
+  //     // HACK TO PERSIST DB
+  //     await new Promise((resolve) => setTimeout(resolve.bind(null, null), 10));
 
-//     await axios.post(`${SERVER_BASE_URL}/llamas`, llama);
+  //     const fakeData = {
+  //       globalConfig,
+  //       users: [user],
+  //       llamas: [llama],
+  //       firstUserCredentials: userCredentials
+  //     }
 
-//     // HACK TO PERSIST DB
-//     await new Promise((resolve) => setTimeout(resolve.bind(null, null), 10));
-
-//     const fakeData = {
-//       globalConfig,
-//       users: [user],
-//       llamas: [llama],
-//       firstUserCredentials: userCredentials
-//     }
-
-//     return fakeData;
-//   });
-
-// }
+  //     return fakeData;
+  //   });
+}
