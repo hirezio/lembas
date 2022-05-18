@@ -6,7 +6,8 @@
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "e2e/lembas-e2e/cypress.json"
+        "cypressConfig": "e2e/lembas-e2e/cypress.json",
+        "devServerTarget": "demo:serve:development"
       }
     },
     "lint": {
@@ -18,5 +19,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["lembas"]
+  "implicitDependencies": ["lembas", "demo"]
 }
