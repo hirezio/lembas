@@ -32,6 +32,13 @@
         "buildTarget": "demo-server:build"
       }
     },
+    "db": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "e2e/demo-server",
+        "command": "docker-compose up"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
