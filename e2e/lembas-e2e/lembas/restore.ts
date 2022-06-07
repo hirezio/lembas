@@ -1,37 +1,40 @@
 import * as execa from 'execa';
+import * as path from 'path';
 import { writeFile, unlink } from 'fs/promises';
 
 export default async function restore(sqlDumpAsString: string) {
-  // const bla = `
-  //   HEY
-  //   WHATS
-  //   WRONG
-  // `;
 
-  // try {
-    
-  //   const { stdout } = await execa('echo', [bla]);
-  //   console.log('stdout', stdout);
-  // } catch (error) {
-  //   console.log('error: ', error);
-  // }
+  const TEMP_FILENAME = 'tmp_dump';
+  const TEMP_FILE_LOCATION = path.join(__dirname, './' + TEMP_FILENAME);
+  const CONTAINER_FOLDER = '/opt/';
 
-  const TEMP_FILE = './tmp_dump';
-  await writeFile(TEMP_FILE, sqlDumpAsString);
+  await writeFile(TEMP_FILE_LOCATION, sqlDumpAsString);
 
   try {
+    
+    await execa('docker',
+      [
+        'compose', 'cp', TEMP_FILE_LOCATION, `db:${CONTAINER_FOLDER}`
+      ],
+      {cwd: path.resolve( __dirname, '../../demo-server')}
+    );
+
+    console.log('COPIED');
+    
     
     await execa('docker-compose',
       [
         '-f', '../../demo-server/docker-compose.yml', 'exec', '-T', 'db',
-        'pg_restore', '-c', '--no-acl', '-U', 'postgres', 'mydb', '<', TEMP_FILE
+        'psql', '-U', 'postgres', '-d', 'mydb', '-f', `${CONTAINER_FOLDER}${TEMP_FILENAME}`
       ],
       {cwd: __dirname}
     );
-    await unlink(TEMP_FILE);
+
+    console.log('RESTORED');
+    await unlink(TEMP_FILE_LOCATION);
     
   } catch (error) {
-    await unlink(TEMP_FILE);
+    await unlink(TEMP_FILE_LOCATION);
     throw error;
   }
   
