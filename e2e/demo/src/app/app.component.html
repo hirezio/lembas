@@ -1,5 +1,5 @@
-Hello
+<h2>List of posts:</h2>
 
-<div *ngFor="let post; in: posts$ | async">
-  {{ post }}
+<div *ngFor="let post of posts$ | async">
+  <span [attr.data-testid]="'post-' + post.id">{{ post.title }}</span>
 </div>

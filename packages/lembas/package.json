@@ -8,6 +8,9 @@
   },
   "main": "src/index.js",
   "scripts": {},
+  "dependencies": {
+    "callsites": "3.1.0"
+  },
   "devDependencies": {},
   "repository": {
     "type": "git",

@@ -1,0 +1,5 @@
+{
+  "emptyHook": "fake",
+  "restoreHook": "fake",
+  "snapshotHook": "fake"
+}

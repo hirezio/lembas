@@ -1,0 +1,4 @@
+{
+  "coverage-gutters.coverageBaseDir": "**",
+  "coverage-gutters.coverageReportFileName": "coverage/**/index.html "
+}

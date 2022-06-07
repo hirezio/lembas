@@ -1,11 +1,14 @@
 import { SETUP_DATA } from '@hirez_io/lembas-cypress';
+import { MainSetupData } from './main.smoke.setup';
 
 describe('main', () => {
   it('should do something', () => {
-    cy.task(SETUP_DATA, 'src/smoke/main.smoke.setup').then((data) => {
-      console.log('data', data);
+    cy.task<MainSetupData>(SETUP_DATA, 'src/smoke/main.smoke.setup').then(({posts}) => {
+      
       cy.visit('/');
-      expect(true).equal(true);
+
+      cy.getByTestId(`post-${posts[0].id}`).should('contain', posts[0].title);
+      
     });
   });
 });

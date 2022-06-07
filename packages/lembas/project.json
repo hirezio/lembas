@@ -25,7 +25,8 @@
       "outputs": ["coverage/packages/lembas"],
       "options": {
         "jestConfig": "packages/lembas/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "slient": false
       }
     }
   },

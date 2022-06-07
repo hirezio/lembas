@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  posts$: Observable<Post>;
+  posts$: Observable<Post[]>;
 
   constructor(private httpClient: HttpClient) {
-    this.posts$ = this.httpClient.get<Post>('/api/posts');
+    this.posts$ = this.httpClient.get<Post[]>('/api/posts');
   }
 }

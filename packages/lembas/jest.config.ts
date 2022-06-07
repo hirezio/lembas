@@ -12,6 +12,7 @@ export default {
   transform: {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
+  resetMocks: true,
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: true,
   coverageThreshold: {

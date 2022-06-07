@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["jest", "node"]
+    
+    "types": ["jest", "node", "@hirez_io/jest-single"]
   },
   "include": [
     "jest.config.ts",
