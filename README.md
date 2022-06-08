@@ -1,6 +1,6 @@
-# @hirez_io/lembas 👀💪
+# @hirez_io/lembas 🍞✨
 
-This library makes Smoke testing setup easier!
+This library makes Smoke testing's DB seeding easier!
 
 [![npm version](https://img.shields.io/npm/v/@hirez_io/lembas.svg?style=flat-square)](https://www.npmjs.org/package/@hirez_io/lembas)
 [![npm downloads](https://img.shields.io/npm/dm/@hirez_io/lembas.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@hirez_io/lembas&from=2017-07-26)
@@ -12,16 +12,6 @@ This library makes Smoke testing setup easier!
 
 <br/>
 
-<div align="center">
-  <a href="https://learn.hirez.io/?utm_source=github&utm_medium=link&utm_campaign=lembas">
-    <img src="for-readme/test-angular.jpg"
-      alt="TestAngular.com - Free Angular Testing Workshop - The Roadmap to Angular Testing Mastery"
-      width="600"
-    />
-  </a>
-</div>
-
-<br/>
 
 # Table of Contents
 
@@ -31,11 +21,9 @@ This library makes Smoke testing setup easier!
 
 ```console
 yarn add -D @hirez_io/lembas
-```
 
 or
 
-```console
 npm install -D @hirez_io/lembas
 ```
 
@@ -44,33 +32,80 @@ npm install -D @hirez_io/lembas
 
 ## THE PROBLEM: 
 
-Especially...
+Smoke tests require a real database to provide the highest confidence possible.
+
+Populating the database with data (or "DB seeding") is slow, that's why developers / testers usually just use the same DB data between all tests and "clean up" after their changes.
+
+This strategy makes our smoke tests more fragile and less maintainable.
+
 
 
 ## THE SOLUTION: Lembas
 
-OUTLINE
+![image](https://user-images.githubusercontent.com/1430726/172548918-b8e018a1-56bd-4ea7-ad55-56ead20c61be.png)
+
+If the smoke test is the "Critical User Journey".. we need food for this journey.
+
+And "Lembas" (the Elvish way-bread) is the best food we can get for our journey (god I'm a nerd 😅🤦‍♂️)
 
 
+## How does it work?
 
-* ✅ **Easier** to understand
+1. You write the setup code for the smoke test (sending ajax requests to create entities)
+   
+2. You wrap with with a `lembasWrapper()`
+   
+3. Next time you'll run the same test it'll skip the setup code, and will populate the DB initial state from the cache.
 
-* ✅ **Reduces** the complexity
 
-* ✅ **cleaner** ...
+![image](https://user-images.githubusercontent.com/1430726/172550271-2d42c96f-5fd6-49e0-82ff-f93ae73b6045.png)
+
+## Lembas's Benefits:
+
+* ✅ **Repeatable** - Bugs are easier to reproduce because the "snapshots" are committed to git.
+
+* ✅ **Minimal** - Only create the data you need for the test, no need for giant db dumps from production.
+
+* ✅ **Faster** - Restoring from cache is faster than writing data via the server layer.
+
+* ✅ **Flexible** - Write your own "backup and restore" logic that fits your stack.
  
-
-
-## Why is easier?
-
-
 
 # Usage
 
+In order to setup `lembas` you'll need a `lembas.json` file and 
+
+## Setup the `lembas.json` configuration file
 
 
-## `code`
 
+
+`lembas-hooks/` folder with 3 files: `empty.ts`, `restore.ts` and `snapshot.ts`
+
+## `lembasWrapper( asyncSetupFunction )`
+
+Where `asyncSetupFunction` is where your setup logic located.
+
+It must be an `async` function (return a promise)
+
+
+Example: 
+
+```js
+
+import {lembasWrapper} from '@hirez_io/lembas`;
+
+export async function setup(){
+
+  return lembasWrapper( async () => {
+
+  })
+}
+
+```
+
+
+## `emptyData()`
 
 
 ## Contributing

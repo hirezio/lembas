@@ -1,16 +1,12 @@
 {
-  "name": "@hirez_io/lembas",
-  "version": "0.0.0-development",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hirezio/lembas"
-  },
-  "description": "A simple little class that helps making Observable testing a breeze",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "lembas-root",
+  "version": "0.0.0",
   "scripts": {
     "clean": "rimraf dist",
     "commit": "git-cz",
+    "test:singles": "nx run-many --target=test --projects='lembas'",
+    "test": "run-p test:singles lint",
+    "build": "nx run-many --target=build --projects='lembas,lembas-cypress'",
     "generate-toc": "doctoc README.md",
     "format:fix": "pretty-quick --staged",
     "lint": "eslint . --ext .js,.ts",
@@ -22,6 +18,7 @@
     "demo": "nx run-many --target=serve --projects=demo,demo-server",
     "test:smoke:watch": "run-p server-and-db cy:open",
     "test:smoke": "run-p server-and-db cy:run",
+    "version": "nx run-many --target=version --projects='lembas,lembas-cypress'",
     "cy:open": "nx e2e lembas-e2e --watch",
     "cy:run": "nx e2e lembas-e2e",
     "postinstall": "ngcc --properties es2015 browser module main"
@@ -44,7 +41,7 @@
     "company": "HiRez.io"
   },
   "license": "MIT",
-  "workspaces":[
+  "workspaces": [
     "packages/lembas",
     "packages/lembas-cypress"
   ],
@@ -57,13 +54,16 @@
     "@angular/compiler-cli": "~13.3.0",
     "@angular/language-service": "~13.3.0",
     "@commitlint/cli": "16.2.1",
+    "@commitlint/config-angular": "^17.0.0",
     "@commitlint/config-conventional": "16.2.1",
     "@hirez_io/jest-single": "1.1.5",
+    "@jscutlery/semver": "2.25.2",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
     "@nrwl/angular": "14.1.7",
     "@nrwl/cli": "14.1.5",
     "@nrwl/cypress": "14.1.5",
+    "@nrwl/eslint-plugin-nx": "14.2.1",
     "@nrwl/jest": "14.1.5",
     "@nrwl/js": "14.1.5",
     "@nrwl/nest": "14.1.7",
@@ -72,8 +72,8 @@
     "@types/jest": "^27.4.1",
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.7",
-    "@typescript-eslint/eslint-plugin": "5.12.1",
-    "@typescript-eslint/parser": "5.12.1",
+    "@typescript-eslint/eslint-plugin": "5.24.0",
+    "@typescript-eslint/parser": "5.24.0",
     "all-contributors-cli": "6.20.0",
     "axios": "0.27.2",
     "commitizen": "4.2.4",

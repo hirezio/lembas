@@ -60,7 +60,7 @@ git checkout -b my-fix-branch master
 
 ### ▶ 4. Make sure you add / modify tests
 
-Run `yarn test:full` to make sure there aren't any errors
+Run `npm run test` to make sure there aren't any errors
 
 <br/>
 
@@ -69,7 +69,7 @@ Run `yarn test:full` to make sure there aren't any errors
 Instead of `git commit` use the following command:
 
 ```shell
-yarn commit
+npm run commit
 ```
 
 It will then ask you a bunch of questions.
@@ -100,7 +100,7 @@ If you need to update your PR for some reason -
 
 - Make the required updates.
 
-- Re-run the tests to ensure tests are still passing `yarn test:full`
+- Re-run the tests to ensure tests are still passing `npm run test`
 
 - Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
 

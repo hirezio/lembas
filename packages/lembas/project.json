@@ -13,6 +13,18 @@
         "assets": ["packages/lembas/*.md"]
       }
     },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs bla {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -27,6 +39,12 @@
         "jestConfig": "packages/lembas/jest.config.ts",
         "passWithNoTests": true,
         "slient": false
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular"
       }
     }
   },
