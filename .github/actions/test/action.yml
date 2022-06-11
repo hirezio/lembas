@@ -1,0 +1,37 @@
+name: Test
+
+description: Lint, Test and upload to Codecov
+
+inputs:
+  codecov_token:
+    description: Codecov token
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Commitlint
+      shell: bash
+      run: npm run commitlint --from=last-release
+
+    - name: Lint
+      shell: bash
+      run: npx nx affected:lint --base=last-release
+
+    - name: Build
+      shell: bash
+      run: npx nx affected:build --base=last-release
+
+    - name: Test
+      shell: bash
+      run: npm run test:singles
+
+    - name: E2E
+      shell: bash
+      run: npm run test:e2e
+
+    - name: Codecov upload
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ inputs.codecov_token }}

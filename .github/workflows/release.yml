@@ -1,89 +1,96 @@
-name: Build
-on:
-  push:
-    branches:
-      - master
-      - staging
-  pull_request:
+# name: Release
 
-jobs:
-  build:
-    name: Build and test on node ${{ matrix.node }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ['14', '16']
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: '0'
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+# on:
+#   - workflow_dispatch
 
-      - name: Install dependencies
-        run: npm ci
+# jobs:
 
-      - name: Build
-        run: npm run build
+# name: Build
+# on:
+#   push:
+#     branches:
+#       - main
+#       - next
+#   pull_request:
 
-      - name: Run Lint and Tests
-        run: npm run test:singles
+# jobs:
+#   build:
+#     name: Build and test on node ${{ matrix.node }}
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node: ['14', '16']
+#     env:
+#       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: '0'
+#       - name: Setup Node
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node }}
+#           registry-url: 'https://registry.npmjs.org'
+#           cache: 'npm'
 
-  release:
-    name: Release
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: '0'
+#       - name: Install dependencies
+#         run: npm ci
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+#       - name: Build
+#         run: npm run build
 
-      - name: Install dependencies
-        run: npm ci
+#       - name: Run Lint and Tests
+#         run: npm run test:singles
 
-      - name: Build
-        run: npm run build
+#   release:
+#     name: Release
+#     needs: build
+#     if: github.event_name == 'push' && github.ref == 'refs/heads main'
+#     runs-on: ubuntu-latest
+#     env:
+#       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: '0'
 
-      - name: Run Lint and Tests
-        run: npm run test:singles
+#       - name: Setup Node
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '16'
+#           registry-url: 'https://registry.npmjs.org'
+#           cache: 'npm'
 
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v2
+#       - name: Install dependencies
+#         run: npm ci
 
-      - name: Configure CI Git User
-        run: |
-          git config --global user.name '@hirezio'
-          git config --global user.email 'hirezio@users.noreply.github.com'
+#       - name: Build
+#         run: npm run build
 
-      - name: Check Authentication with Registry
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm whoami
+#       - name: Run Lint and Tests
+#         run: npm run test:singles
 
-      - name: Update Version and Publish to NPM
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        # run: npm run semantic-release
+#       - name: Upload coverage reports
+#         uses: codecov/codecov-action@v2
+
+#       - name: Configure CI Git User
+#         run: |
+#           git config --global user.name '@hirezio'
+#           git config --global user.email 'hirezio@users.noreply.github.com'
+
+#       - name: Check Authentication with Registry
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#         run: npm whoami
+
+#       - name: Update Version and Publish to NPM
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+# run: npm run semantic-release
