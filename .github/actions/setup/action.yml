@@ -1,0 +1,33 @@
+name: setup
+
+description: Setup Node, cache and install deps
+
+inputs:
+  node_version:
+    description: Node Version
+    required: false
+    default: '16'
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout all commits
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Setup git user
+      shell: bash
+      run: |
+        git config --global user.name '@hirezio'
+        git config --global user.email 'hirezio@users.noreply.github.com'
+
+    - name: Use Node & npm install
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
