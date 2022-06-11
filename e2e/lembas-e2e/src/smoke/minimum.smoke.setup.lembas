@@ -1,5 +1,5 @@
 
-{"posts":[{"id":1,"title":"FAKE POST 1"},{"id":2,"title":"FAKE POST 2"},{"id":3,"title":"FAKE POST 2 FAKE POST 1FAKE POST 1"}]}
+{"posts":[{"id":1,"title":"FAKE POST 1"}]}
 
 ===LEMBAS===LEMBAS===LEMBAS===
 
@@ -96,8 +96,6 @@ ALTER TABLE ONLY public."Post" ALTER COLUMN id SET DEFAULT nextval('public."Post
 
 COPY public."Post" (id, title) FROM stdin;
 1	FAKE POST 1
-2	FAKE POST 2
-3	FAKE POST 2 FAKE POST 1FAKE POST 1
 \.
 
 
@@ -114,7 +112,7 @@ abd121de-8245-477b-8414-bbe3347e2648	9c25687fcbee185d892917df675e1de6e7a2b9c704d
 -- Name: Post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Post_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."Post_id_seq"', 1, true);
 
 
 --
