@@ -38,6 +38,7 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "noVerify": true,
+        "push": true,
         "postTargets": ["lembas-cypress:publish", "lembas-cypress:push-to-github"]
       }
     },
