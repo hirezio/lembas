@@ -25,7 +25,7 @@ runs:
 
     - name: Test
       shell: bash
-      run: npx nx affected --target=test
+      run: npx nx affected --target=test --base=last-release
 
     - name: E2E
       shell: bash
