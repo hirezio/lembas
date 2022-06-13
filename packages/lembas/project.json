@@ -32,14 +32,11 @@
     },
     "version": {
       "executor": "@jscutlery/semver:version",
-      "options": {
-        "preset": "angular"
-      }
+      "options": {}
     },
     "version-publish": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "preset": "angular",
         "noVerify": true,
         "postTargets": ["lembas-cypress:publish", "lembas-cypress:push-to-github"]
       }

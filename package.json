@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "commit": "git-cz",
-    "test:singles": "nx run-many --target=test --projects='lembas'",
+    "test:singles": "nx affected --target=test",
     "test:e2e": "start-server-and-test server-and-db http://localhost:3333/api/posts prisma-and-e2e",
     "test": "run-p test:singles lint",
     "build": "nx run-many --target=build --projects='lembas,lembas-cypress'",

@@ -38,14 +38,6 @@
         "cwd": "e2e/demo-server",
         "command": "docker-compose up"
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/e2e/demo-server"],
-      "options": {
-        "jestConfig": "e2e/demo-server/jest.config.ts",
-        "passWithNoTests": true
-      }
     }
   },
   "tags": []
