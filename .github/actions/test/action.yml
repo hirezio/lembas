@@ -13,7 +13,7 @@ runs:
   steps:
     - name: Commitlint
       shell: bash
-      run: npm run commitlint --from=last-release
+      run: npx --no-install commitlint --edit
 
     - name: Lint
       shell: bash

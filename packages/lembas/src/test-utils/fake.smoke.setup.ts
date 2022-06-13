@@ -1,5 +1,6 @@
 import { lembasWrapper } from '../lembas-wrapper';
 
-export function callLembasWrapper(fn: any){
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function callLembasWrapper(fn: any) {
   return lembasWrapper(fn);
 }
