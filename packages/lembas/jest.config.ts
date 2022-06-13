@@ -15,6 +15,7 @@ export default {
   resetMocks: true,
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: true,
+  coveragePathIgnorePatterns: ['test-utils/'],
   coverageThreshold: {
     global: {
       branches: 100,
