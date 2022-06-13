@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.3](https://github.com/hirezio/lembas/compare/lembas-0.0.2...lembas-0.0.3) (2022-06-13)
+
+
+
 ## 0.0.1 (2022-06-08)
 
 
