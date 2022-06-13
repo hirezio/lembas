@@ -19,7 +19,7 @@
     "demo": "nx run-many --target=serve --projects=demo,demo-server",
     "test:smoke:watch": "run-p server-and-db cy:open",
     "test:smoke": "run-p server-and-db cy:run",
-    "version": "nx run-many --target=version --projects='lembas,lembas-cypress'",
+    "version:local": "nx affected --target=version",
     "prisma:migrate": "prisma migrate dev",
     "prisma-and-e2e": "run-s prisma:migrate cy:run",
     "cy:open": "nx e2e lembas-e2e --watch",
