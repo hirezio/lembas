@@ -69,14 +69,6 @@
       "options": {
         "browserTarget": "demo:build"
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/e2e/demo"],
-      "options": {
-        "jestConfig": "e2e/demo/jest.config.ts",
-        "passWithNoTests": true
-      }
     }
   },
   "tags": []
