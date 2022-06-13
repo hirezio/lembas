@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LembasWrapperOptions, lembasWrapper, LEMBAS_SEPARATOR } from './lembas-wrapper';
 import { writeFile, readFile } from 'fs/promises';
 import { callLembasWrapper } from './test-utils/fake.smoke.setup';
@@ -38,7 +39,7 @@ DATA
       fakeObjects,
       lembasWrapperOptions,
       getLembasConfigSpy,
-      FAKE_RAW_DB_DATA
+      FAKE_RAW_DB_DATA,
     };
   }
 
@@ -128,7 +129,12 @@ DATA
        AND config is configured to return fake snapshot hook
        AND snapshot is configured to return fake raw data`,
       () => {
-        const { fakeObjects, lembasWrapperOptions, getLembasConfigSpy, FAKE_RAW_DB_DATA } = setup();
+        const {
+          fakeObjects,
+          lembasWrapperOptions,
+          getLembasConfigSpy,
+          FAKE_RAW_DB_DATA,
+        } = setup();
 
         (fs.existsSync as jest.Mock).mockReturnValue(false);
 
@@ -199,18 +205,24 @@ ${FAKE_RAW_DB_DATA}
   });
 
   describe(`reading from cache`, () => {
-
-    given(`
+    given(
+      `
       lembas file DOES exist
-      AND config is configured to return a fake restore hook`, () => {
-      //
-      const { fakeObjects, lembasWrapperOptions, getLembasConfigSpy, FAKE_RAW_DB_DATA } = setup();
+      AND config is configured to return a fake restore hook`,
+      () => {
+        //
+        const {
+          fakeObjects,
+          lembasWrapperOptions,
+          getLembasConfigSpy,
+          FAKE_RAW_DB_DATA,
+        } = setup();
 
-      (fs.existsSync as jest.Mock).mockReturnValue(true);
+        (fs.existsSync as jest.Mock).mockReturnValue(true);
 
-      const fakeDataObjectsJson = JSON.stringify(fakeObjects);
+        const fakeDataObjectsJson = JSON.stringify(fakeObjects);
 
-      const fakeLembasContent = `
+        const fakeLembasContent = `
 
 ${fakeDataObjectsJson}
 
@@ -220,38 +232,46 @@ ${FAKE_RAW_DB_DATA}
 
 `;
 
-      (readFile as jest.Mock).mockResolvedValue(fakeLembasContent);
+        (readFile as jest.Mock).mockResolvedValue(fakeLembasContent);
 
-      getLembasConfigSpy.mockResolvedValue({
-        restoreHook: './test-utils/lembas-hooks/fake-restore-hook.ts',
-      });
+        getLembasConfigSpy.mockResolvedValue({
+          restoreHook: './test-utils/lembas-hooks/fake-restore-hook.ts',
+        });
 
-      when('wrapping data generator with lembasWrapper', async () => {
-        const actualResult = await lembasWrapper(async () => { }, lembasWrapperOptions);
-        
-        then(`
+        when('wrapping data generator with lembasWrapper', async () => {
+          const actualResult = await lembasWrapper(async () => {}, lembasWrapperOptions);
+
+          then(
+            `
           actualResult should come from the cache
           AND restore hook should be called with the right raw db dump
-          `, () => {
-          
-          const actualFakeRawDbData = getFakeRawDbData();
-          expect(actualResult).toEqual(fakeObjects);
-          expect(actualFakeRawDbData.trim()).toEqual(FAKE_RAW_DB_DATA.trim());
+          `,
+            () => {
+              const actualFakeRawDbData = getFakeRawDbData();
+              expect(actualResult).toEqual(fakeObjects);
+              expect(actualFakeRawDbData.trim()).toEqual(FAKE_RAW_DB_DATA.trim());
+            }
+          );
         });
-      });
-    });
- 
+      }
+    );
+
     given(
       `lembas file DOES exist
        AND config is configured to return fake restore hook 
        AND the restore hook is NOT returning a default exported function`,
       () => {
-        const { fakeObjects, lembasWrapperOptions, getLembasConfigSpy, FAKE_RAW_DB_DATA } = setup();
+        const {
+          fakeObjects,
+          lembasWrapperOptions,
+          getLembasConfigSpy,
+          FAKE_RAW_DB_DATA,
+        } = setup();
 
         (fs.existsSync as jest.Mock).mockReturnValue(true);
 
         const fakeDataObjectsJson = JSON.stringify(fakeObjects);
-  
+
         const fakeLembasContent = `
 ${fakeDataObjectsJson}
 
@@ -280,7 +300,6 @@ ${FAKE_RAW_DB_DATA}
         });
       }
     );
-    
   });
 });
 

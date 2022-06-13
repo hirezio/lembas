@@ -9,13 +9,6 @@
         "cypressConfig": "e2e/lembas-e2e/cypress.json",
         "devServerTarget": "demo:serve:development"
       }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["e2e/lembas-e2e/**/*.{js,ts}"]
-      }
     }
   },
   "tags": [],
