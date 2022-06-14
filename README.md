@@ -4,10 +4,9 @@ This library makes Smoke testing's DB seeding easier!
 
 [![npm version](https://img.shields.io/npm/v/@hirez_io/lembas.svg?style=flat-square)](https://www.npmjs.org/package/@hirez_io/lembas)
 [![npm downloads](https://img.shields.io/npm/dm/@hirez_io/lembas.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@hirez_io/lembas&from=2017-07-26)
-![Build](https://github.com/hirezio/lembas/workflows/Build/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://img.shields.io/codecov/c/github/hirezio/lembas.svg)](https://codecov.io/gh/hirezio/lembas) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-green.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -105,7 +104,22 @@ export async function setup(){
 ```
 
 
-## `emptyData()`
+## Example:
+
+Until we'll get to writing proper docs
+
+[Here's a working example of these libraries](https://github.com/hirezio/lembas/tree/main/e2e/lembas-e2e)
+
+.
+.
+
+
+# Want more Advanced & Enterprise features? 🔥💪
+
+## [FIll up this form](https://forms.gle/iVr6rbyVLNFB8gbF6)
+
+.
+.
 
 
 ## Contributing
