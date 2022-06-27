@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "db": "nx db demo-server",
     "server": "nx serve demo-server",
-    "server-and-db": "run-p db server",
+    "server-and-db": "start-server-and-test db http://localhost:3020 server",
     "demo": "nx run-many --target=serve --projects=demo,demo-server",
     "test:smoke:watch": "run-p server-and-db cy:open",
     "test:smoke": "run-p server-and-db cy:run",

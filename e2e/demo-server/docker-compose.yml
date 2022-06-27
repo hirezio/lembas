@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  postgres-check:
+    image: duluca/minimal-node-web-server
+    volumes:
+      - ./docker-specific:/opt
+    entrypoint:
+      - /bin/sh
+      - /opt/check-postgres.sh
+    ports:
+      - '3020:3000'
+
   db:
     image: postgres:14.3-alpine
     restart: always
