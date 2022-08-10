@@ -1,11 +1,40 @@
 # lembas-cypress
 
-This library was generated with [Nx](https://nx.dev).
+A cypress plugin to run lembas setup files as a task.
 
-## Running unit tests
+## Usage
 
-Run `nx test lembas-cypress` to execute the unit tests via [Jest](https://jestjs.io).
+In your `plugins/index.ts` add the following:
 
-## Running lint
+```
+import { setupDataTask } from '@hirez_io/lembas-cypress';
 
-Run `nx lint lembas-cypress` to execute the lint via [ESLint](https://eslint.org/).
+export default (on, config) => {
+  on('task', setupDataTask);
+  
+};
+
+```
+
+Then in your tests you can call the task like this:
+
+```
+import { SETUP_DATA } from '@hirez_io/lembas-cypress';
+import { MainSetupData } from './main.smoke.setup';
+
+describe('main smoke test', () => {
+
+  it('should do something', () => {
+
+    cy.task<MainSetupData>(SETUP_DATA, 'src/smoke/main.smoke.setup').then(data) => {
+
+      cy.visit('/');
+
+      // ... do something with the data ...
+      
+    });
+  });
+});
+
+
+```
