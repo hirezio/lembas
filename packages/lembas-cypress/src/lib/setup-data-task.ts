@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { existsSync } from 'fs';
 
-export const SETUP_DATA = 'setupData';
+export const SETUP_DATA = 'lembas_setup_data';
 const LEMBAS_CONFIG_FILENAME = `lembas.json`;
 
 export const setupDataTask: any = {};
