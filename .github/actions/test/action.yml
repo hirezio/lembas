@@ -11,9 +11,9 @@ runs:
   using: composite
 
   steps:
-    - name: Commitlint
-      shell: bash
-      run: npx --no-install commitlint --from=last-release
+    # - name: Commitlint
+    # shell: bash
+    # run: npx --no-install commitlint --from=last-release
 
     - name: Lint
       shell: bash
