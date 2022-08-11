@@ -3,7 +3,8 @@
   "description": "DB Seeding Util for more efficient Smoke Testing",
   "version": "0.0.3",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
   },
   "main": "src/index.js",
   "scripts": {},
