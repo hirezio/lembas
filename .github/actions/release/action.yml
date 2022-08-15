@@ -22,6 +22,7 @@ runs:
     - name: Version
       env:
         NODE_AUTH_TOKEN: ${{ inputs.npm_token }}
+        NPM_TOKEN: ${{ inputs.npm_token }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       shell: bash
       run: npx nx affected --base=last-release --target=version-publish
