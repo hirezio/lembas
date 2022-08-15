@@ -6,6 +6,10 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 
 
+## [0.0.5](https://github.com/hirezio/lembas/compare/lembas-cypress-0.0.4...lembas-cypress-0.0.5) (2022-08-15)
+
+
+
 ## [0.0.4](https://github.com/hirezio/lembas/compare/lembas-cypress-0.0.3...lembas-cypress-0.0.4) (2022-08-10)
 
 
