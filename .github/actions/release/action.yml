@@ -25,7 +25,9 @@ runs:
         NPM_TOKEN: ${{ inputs.npm_token }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       shell: bash
-      run: npx nx affected --base=last-release --target=version-publish
+      run: |
+        npm whoami
+        npx nx affected --base=last-release --target=version-publish
 
     - name: Tag last-release
       shell: bash
