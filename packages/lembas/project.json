@@ -39,7 +39,7 @@
       "options": {
         "noVerify": true,
         "push": true,
-        "postTargets": ["lembas-cypress:publish", "lembas-cypress:push-to-github"]
+        "postTargets": ["lembas:publish", "lembas:push-to-github"]
       }
     },
     "publish": {
