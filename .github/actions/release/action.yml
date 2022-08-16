@@ -27,6 +27,7 @@ runs:
       shell: bash
       run: |
         npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        echo '//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN' > ${{github.workspace}}/.npmrc
         npm whoami
         npx nx affected --base=last-release --target=version-publish
 
