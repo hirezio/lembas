@@ -13,7 +13,6 @@
         "assets": ["packages/lembas/*.md"]
       }
     },
-
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

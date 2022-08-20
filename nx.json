@@ -35,5 +35,10 @@
     "@nrwl/angular:component": {
       "style": "css"
     }
+  },
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
   }
 }
